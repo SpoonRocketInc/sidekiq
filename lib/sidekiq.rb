@@ -105,7 +105,9 @@ module Sidekiq
   end
 
   def self.load_json(string)
-    JSON.parse(string)
+    JSON.parse(string, {
+      object_class: ActiveSupport::HashWithIndifferentAccess
+    })
   end
 
   def self.dump_json(object)
