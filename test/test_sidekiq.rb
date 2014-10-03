@@ -7,6 +7,10 @@ class TestSidekiq < Sidekiq::Test
       assert_equal ({"foo" => "bar"}), Sidekiq.load_json("{\"foo\":\"bar\"}")
     end
 
+    it 'loads json can be accessed by symbols' do
+      assert_equal "bar", Sidekiq.load_json("{\"foo\":\"bar\"}")[:foo]
+    end
+
     it 'dumps json' do
       assert_equal "{\"foo\":\"bar\"}", Sidekiq.dump_json({ "foo" => "bar" })
     end
